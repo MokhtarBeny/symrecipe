@@ -14,6 +14,12 @@
      Créer un ingrédient
      </a>
    
+    {% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+
   <h2> 
   <div class="count mt-4">
      Il y a {{ recipes.getTotalItemCount }} recettes.  
@@ -51,7 +57,7 @@
         </td>
         <td>{{ recipe.createdat |date('d/m/Y') }}</td>
         <td>
-        todo
+         <a href="{{ path('recipe.edit', { id: recipe.id }) }}" class="btn btn-info">Modifier</a> 
         </td>
         <td>
         todo

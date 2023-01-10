@@ -99,16 +99,16 @@ class IngredientController extends AbstractController
 
             $manager->persist($ingredient);
             $manager->flush();
-
+            
             $this->addFlash(
                 'success',
                 'Votre ingrédient a été modifié avec succès'
-
+                
             );
-
+            
+            
             return $this->redirectToRoute('ingredient.index');
-                  
-           
+            
         }
 
         return $this->render('ingredient/edit.html.twig',[
@@ -131,4 +131,3 @@ class IngredientController extends AbstractController
         return $this->redirectToRoute('ingredient.index');
     }
  }
-

@@ -87,3 +87,4 @@ class Ingredient
         return $this->name;
     }
 }
+
