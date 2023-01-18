@@ -75,7 +75,7 @@ class RecipeController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    #[Security("is_granted('ROLE_USER') and user === recipe.getUser()")]
+    
     #[Route('/recette/edition/{id}', 'recipe.edit', methods: ['GET', 'POST'])]
     public function edit(
         Recipe $recipe,
@@ -112,7 +112,7 @@ class RecipeController extends AbstractController
      * @return Response
      */
     #[Route('/recette/suppression/{id}', 'recipe.delete', methods: ['GET'])]
-    #[Security("is_granted('ROLE_USER') and user === recipe.getUser()")]
+    
     public function delete(
         EntityManagerInterface $manager,
         Recipe $recipe
@@ -134,7 +134,7 @@ class RecipeController extends AbstractController
      * @param Recipe $recipe
      * @return Response
      */
-    #[Security("is_granted('ROLE_USER') and (recipe.getIsPublic() === true || user === recipe.getUser())")]
+    
     #[Route('/recette/{id}', 'recipe.show', methods: ['GET', 'POST'])]
     public function show(
         Recipe $recipe,
