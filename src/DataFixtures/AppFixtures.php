@@ -3,9 +3,11 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\Mark;
 use App\Entity\User;
 use Faker\Generator;
 use App\Entity\Recipe;
+use App\Entity\Contact;
 use App\Entity\Ingredient;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -26,8 +28,20 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager,): void
     {
+
         // Users
         $users = [];
+
+        $admin = new User();
+        $admin->setFullName('Administrateur de SymRecipe')
+            ->setPseudo(null)
+            ->setEmail('admin@symrecipe.fr')
+            ->setRoles(['ROLE_USER, ROLE_ADMIN'])
+            ->setPlainPassword('password');
+            
+
+        $users[] = $admin;
+        $manager->persist($admin);
 
         for ($i=0; $i < 10 ; $i++) {
             $user = new User();
@@ -55,6 +69,7 @@ class AppFixtures extends Fixture
         }
                               
         //Recipes
+        $recipes = [];
         for ($j=0; $j < 25 ; $j++) {
             $recipe = new Recipe();
             $recipe->setName($this->faker->word())
@@ -64,6 +79,7 @@ class AppFixtures extends Fixture
                 ->setDescription($this->faker->text(300))
                 ->setPrice(mt_rand(0, 1) == 1 ? mt_rand(1, 1000) : Null)
                 ->setIsFavorite(mt_rand(0, 1) == 1 ? true : false)
+                ->setIsPublic(mt_rand(0, 1) == 1 ? true : false)
                 ->setUser($users[mt_rand(0, count($users) -1)]);
 
                 for ($k=0; $k < mt_rand (5, 15); $k++) {
@@ -72,11 +88,34 @@ class AppFixtures extends Fixture
                 $recipe->addIngredient($ingredients[mt_rand(0, count($ingredients) - 1)]);
                 }
 
+            $recipes[] = $recipe;    
             $manager->persist($recipe);
         }
 
+        // Marks
 
-        
+        foreach ($recipes as $recipe) {
+           for ($i=0; $i < mt_rand(0, 4); $i++) {
+                $mark = new Mark();
+                $mark->setMark(mt_rand(1, 5))
+                    ->setUser($users[mt_rand(0, count($users) - 1)])
+                    ->setRecipe($recipe);
+
+                $manager->persist($mark);
+                
+           }        
+        }
+
+        // Contact
+        for ($i = 0; $i < 5; $i++) {
+            $contact = new Contact();
+            $contact->setFullName($this->faker->name())
+                ->setEmail($this->faker->email())
+                ->setSubject('Demande n°' . ($i + 1))
+                ->setMessage($this->faker->text());
+
+            $manager->persist($contact);
+        }
 
 
         $manager->flush();
