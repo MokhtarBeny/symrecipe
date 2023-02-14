@@ -73,7 +73,7 @@ class IngredientController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Votre ingrédient a été créé avec succès'
+                'Votre ingrédient a été créé avec succès !'
 
             );
 

@@ -6,13 +6,13 @@
 
       
 
-    <h1 class="mt-4">  Modification de l'ingrédient </h1>
+    <h1 class="mt-4 txt2">  Modification de l'ingrédient </h1>
 
     
 
        {{ form_start(form) }}
     <div class="form-error">
-        
+        {{ form_errors(form) }}
     </div>
 
     <div class="form-group">
@@ -30,6 +30,10 @@
         {{ form_errors(form.price) }}
     </div>
     </div>
+
+    <div class="form-group">
+			{{ form_row(form._token) }}
+		</div>
 
     <div class='form.group'>
         {{ form_row(form.submit) }}

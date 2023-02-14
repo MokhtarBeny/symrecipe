@@ -25,7 +25,7 @@ class UserType extends AbstractType
             ],
             'label' => 'Nom / Prénom',
             'label_attr' => [
-                'class' => 'form-label  mt-4'
+                'class' => 'form-label  mt-4 txt2'
             ], 
             'constraints' => [
                 new Assert\NotBlank(),
@@ -41,7 +41,7 @@ class UserType extends AbstractType
             'required' => false,
             'label' => 'Pseudo (Facultatif)',
             'label_attr' => [
-                'class' => 'form-label  mt-4'
+                'class' => 'form-label  mt-4 txt2'
             ], 
             'constraints' => [
                 
@@ -51,10 +51,10 @@ class UserType extends AbstractType
         ->add('plainPassword', PasswordType::class, [
             'label' => 'Mot de passe',
             'label_attr' => [
-                'class' => 'col-sm-2 col-form-label',
+                'class' => 'col-sm-2 col-form-label txt2',
             ],
             'attr' => [
-                'class' => 'form-control',
+                'class' => 'form-control txt2',
             ],
             'constraints' => [
                 new Assert\NotBlank([

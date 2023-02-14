@@ -8,9 +8,9 @@
 
    
    {% if not ingredients.items is same as([]) %}
-    <h1> Mes ingrédients  </h1>
+    <h1 class="txt2"> Mes ingrédients  </h1>
 
-     <a href="{{ path('ingredient.new') }}"  class=" btn btn-primary">
+     <a href="{{ path('ingredient.new') }}"  class=" btn btn-primary txt2">
      Créer un ingrédient
      </a>
 
@@ -22,7 +22,7 @@
 
    
   <h2> 
-  <div class="count mt-4">
+  <div class="count mt-4 txt2">
      Il y a {{ ingredients.getTotalItemCount }} ingrédients au total.  
     </div>
   </h2>
@@ -31,12 +31,12 @@
  <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Numéro</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Prix</th>
-      <th scope="col">Date de création</th>
-      <th scope="col">Edition</th>
-      <th scope="col">Suppression</th>
+      <th scope="col" class="txt2">Numéro</th>
+      <th scope="col" class="txt2">Nom</th>
+      <th scope="col" class="txt2">Prix</th>
+      <th scope="col" class="txt2">Date de création</th>
+      <th scope="col" class="txt2">Edition</th>
+      <th scope="col" class="txt2">Suppression</th>
     </tr>
   </thead>
   <tbody>
@@ -64,7 +64,7 @@
 </div>
 
 {% else %}
-			<h4>Il n'y a pas d'ingrédients</h4>
+			<h4 class="txt2">Il n'y a pas d'ingrédients</h4>
 
 {% endif %}
  </div>

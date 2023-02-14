@@ -1,0 +1,22 @@
+
+
+
+
+body {
+    background-image : url('symRecipe1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+.card {
+    background-color: hsla(0, 0%, 100%, 0.5);
+  }
+
+.txt2 
+
+{ color :burlywood;
+
+}
+

@@ -43,7 +43,7 @@ class RecipeType extends AbstractType
             ],
             'label' => 'nom',
             'label_attr' => [
-                'class' => 'form-label mt-4'
+                'class' => 'form-label mt-4 txt2'
             ],
             'constraints' => [
                 new Assert\Length(['min' => 2, 'max' => 50]),
@@ -59,7 +59,7 @@ class RecipeType extends AbstractType
             'required' => false,
             'label' => 'Temps (en minutes)',
             'label_attr' => [
-                'class' => 'form-label mt-4'
+                'class' => 'form-label mt-4 txt2'
             ],
             'constraints' => [
                 new Assert\Positive(),
@@ -76,7 +76,7 @@ class RecipeType extends AbstractType
             'required' => false,
             'label' => 'Nombre de personnes',
             'label_attr' => [
-                'class' => 'form-label mt-4'
+                'class' => 'form-label mt-4 txt2'
             ],
             'constraints' => [
                 new Assert\Positive(),
@@ -93,7 +93,7 @@ class RecipeType extends AbstractType
             'required' => false,
             'label' => 'Difficulté',
             'label_attr' => [
-                'class' => 'form-label mt-4'
+                'class' => 'form-label mt-4 txt2'
             ],
             'constraints' => [
                 new Assert\Positive(),
@@ -109,7 +109,7 @@ class RecipeType extends AbstractType
             ],
             'label' => 'Description',
             'label_attr' => [
-                'class' => 'form-label mt-4'
+                'class' => 'form-label mt-4 txt2'
             ],
             'constraints' => [
                 new Assert\NotBlank()
@@ -123,7 +123,7 @@ class RecipeType extends AbstractType
                 ],
                 'label' => 'Prix ',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label mt-4 txt2'
                 ],
                 'constraints' => [
                     new Assert\Positive(),
@@ -138,7 +138,7 @@ class RecipeType extends AbstractType
                 'required' => false,
                 'label' => 'Favoris ? ',
                 'label_attr' => [
-                    'class' => 'form-check-label'
+                    'class' => 'form-check-label txt2'
                 ],
                 'constraints' => [
                     new Assert\NotNull()
@@ -148,7 +148,7 @@ class RecipeType extends AbstractType
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image de la recette',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label mt-4 txt2'
                 ],
                 'required' => false
 
@@ -164,7 +164,7 @@ class RecipeType extends AbstractType
                 },
                 'label' => 'Les ingrédients',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label mt-4 txt2'
                 ],
                 'choice_label' => 'name',
                 'multiple' => true,

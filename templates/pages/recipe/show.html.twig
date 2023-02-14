@@ -22,11 +22,11 @@ SymRecipe.{{ recipe.name }}
       <img style="max-width: 500px;" src="{{ vich_uploader_asset(recipe, 'imageFile') }}">
     </div>
 
-    <p>La moyenne de cette recette est de {{ recipe.average|number_format(2, '.', ',') }} /5 </p>
+    <p class="txt2">La moyenne de cette recette est de {{ recipe.average|number_format(2, '.', ',') }} /5 </p>
 
 
     <div>
-    <span class="badge bg-primary"> Créé le  {{ recipe.createdAt|date('d/m/Y')}}</span>
+    <span class="badge bg-primary txt2"> Créé le  {{ recipe.createdAt|date('d/m/Y')}}</span>
     </div>
 
     <div class="mt-4">

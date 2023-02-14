@@ -27,7 +27,7 @@ class RegistrationType extends AbstractType
                 ],
                 'label' => 'Nom / Prénom',
                 'label_attr' => [
-                    'class' => 'form-label  mt-4'
+                    'class' => 'form-label  mt-4 txt2'
                 ], 
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -43,7 +43,7 @@ class RegistrationType extends AbstractType
                 'required' => false,
                 'label' => 'Pseudo (Facultatif)',
                 'label_attr' => [
-                    'class' => 'form-label  mt-4'
+                    'class' => 'form-label  mt-4 txt2'
                 ], 
                 'constraints' => [
                     
@@ -58,7 +58,7 @@ class RegistrationType extends AbstractType
                 ],
                 'label' => 'Adresse email',
                 'label_attr' => [
-                    'class' => 'form-label  mt-4'
+                    'class' => 'form-label  mt-4 txt2'
                 ], 
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -74,7 +74,7 @@ class RegistrationType extends AbstractType
                     ], 
                     'label' => 'Mot de passe',
                     'label_attr' => [
-                        'class' => 'form-label  mt-4'
+                        'class' => 'form-label  mt-4 txt2'
                     ]
                 ],
                 'second_options' => [
@@ -83,7 +83,7 @@ class RegistrationType extends AbstractType
                     ], 
                     'label' => 'Confirmation du mot de passe',
                     'label_attr' => [
-                        'class' => 'form-label  mt-4'
+                        'class' => 'form-label  mt-4 txt2'
                     ]
                 ],
                 'invalid_message' => 'Les mots de passe ne correspondent pas.'

@@ -2,15 +2,14 @@
 
 namespace App\Entity;
 
+use App\Repository\RecipeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
-use App\Repository\RecipeRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[UniqueEntity('name')]
 #[ORM\HasLifecycleCallbacks]
@@ -20,13 +19,13 @@ class Recipe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: 'integer')]
+    private ?int $id;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(type: 'string', length: 50)]
     #[Assert\NotBlank()]
     #[Assert\Length(min: 2, max: 50)]
-    private ?string $name = null;
+    private string $name;
 
     #[Vich\UploadableField(mapping: 'recipe_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
@@ -34,58 +33,55 @@ class Recipe
     #[ORM\Column(type: 'string', nullable: true)]
     private ?string $imageName = null;
 
-
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: 'integer', nullable: true)]
     #[Assert\Positive()]
     #[Assert\LessThan(1441)]
-    private ?int $time = null;
+    private ?int $time;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: 'integer', nullable: true)]
     #[Assert\Positive()]
     #[Assert\LessThan(51)]
-    private ?int $nbPeople = null;
+    private ?int $nbPeople;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: 'integer', nullable: true)]
     #[Assert\Positive()]
     #[Assert\LessThan(6)]
-    private ?int $difficulty = null;
+    private ?int $difficulty;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: 'text')]
     #[Assert\NotBlank()]
-    private ?string $description = null;
+    private string $description;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: 'float', nullable: true)]
     #[Assert\Positive()]
     #[Assert\LessThan(1001)]
-    
-    private ?float $price = null;
+    private ?float $price;
 
-    #[ORM\Column]
-    private ?bool $isFavorite = null;
+    #[ORM\Column(type: 'boolean')]
+    private bool $isFavorite;
 
-    #[ORM\Column]
-    private ?bool $isPublic = false ;
+    #[ORM\Column(type: 'boolean')]
+    private $isPublic = false;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
-    private ?\DateTimeImmutable $createdAt = null;
+    private \DateTimeImmutable $createdAt;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\NotNull()]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private \DateTimeImmutable $updatedAt;
 
     #[ORM\ManyToMany(targetEntity: Ingredient::class)]
-    private Collection $ingredients;
+    private $ingredients;
 
-    #[ORM\ManyToOne(inversedBy: 'recipes')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'recipes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    private $user;
 
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: Mark::class, orphanRemoval: true)]
-    private Collection $marks;
+    private $marks;
 
     private ?float $average = null;
-    
 
     public function __construct()
     {
@@ -93,11 +89,11 @@ class Recipe
         $this->createdAt = new \DateTimeImmutable;
         $this->updatedAt = new \DateTimeImmutable();
         $this->marks = new ArrayCollection();
-    } 
+    }
 
-    #[ORM\PrePersist]
-    public function setUpdatedatValue(){
-
+    #[ORM\PrePersist()]
+    public function setUpdatedAtValue()
+    {
         $this->updatedAt = new \DateTimeImmutable();
     }
 
@@ -152,7 +148,6 @@ class Recipe
     {
         return $this->imageName;
     }
-
 
     public function getTime(): ?int
     {
@@ -263,7 +258,7 @@ class Recipe
     }
 
     /**
-     * @return Collection<int, Ingredient>
+     * @return Collection|Ingredient[]
      */
     public function getIngredients(): Collection
     {
@@ -273,7 +268,7 @@ class Recipe
     public function addIngredient(Ingredient $ingredient): self
     {
         if (!$this->ingredients->contains($ingredient)) {
-            $this->ingredients->add($ingredient);
+            $this->ingredients[] = $ingredient;
         }
 
         return $this;
@@ -299,7 +294,7 @@ class Recipe
     }
 
     /**
-     * @return Collection<int, Mark>
+     * @return Collection|Mark[]
      */
     public function getMarks(): Collection
     {
@@ -309,7 +304,7 @@ class Recipe
     public function addMark(Mark $mark): self
     {
         if (!$this->marks->contains($mark)) {
-            $this->marks->add($mark);
+            $this->marks[] = $mark;
             $mark->setRecipe($this);
         }
 
@@ -326,9 +321,10 @@ class Recipe
         }
 
         return $this;
-    }    
+    }
 
-     /**
+
+    /**
      * Get the value of average
      */
     public function getAverage()
@@ -349,7 +345,5 @@ class Recipe
 
         return $this->average;
     }
-
-
-
 }
+
