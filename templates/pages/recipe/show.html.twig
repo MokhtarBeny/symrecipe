@@ -29,16 +29,16 @@ SymRecipe.{{ recipe.name }}
     <span class="badge bg-primary txt2"> Créé le  {{ recipe.createdAt|date('d/m/Y')}}</span>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-4 txt2">
       {% if recipe.time %}
-      <p>Temps (en minutes) : {{ recipe.time }}</p>
+      <p>Temps (en minutes) : {{ recipe.time|min_to_hour }}</p>
       {% else %}
         <p>Temps non renseigné</p>
       {% endif %}
     </div>
 
 
-    <div class="mt-4">
+    <div class="mt-4 txt2">
       {% if recipe.time %}
         <p>Difficulté :
       {{ recipe.difficulty }} /5 </p>
@@ -48,7 +48,7 @@ SymRecipe.{{ recipe.name }}
     </div>
 
 
-    <div class="mt-4">
+    <div class="mt-4 txt2">
       {% if recipe.time %}
         <p>Pour
       {{ recipe.nbPeople }} personne(s)</p>
@@ -57,7 +57,7 @@ SymRecipe.{{ recipe.name }}
       {% endif %}
     </div>
 
-    <div class="mt-4">
+    <div class="mt-4 txt2">
        {% if recipe.price %}
       <p>Prix (en €) : {{ recipe.price }}</p>
       {% else %}
@@ -66,11 +66,11 @@ SymRecipe.{{ recipe.name }}
     </div>
 
 
-    <div>
+    <div class="txt2">
       {{ recipe.description|raw }}
     </div>
 
-     <p class="mt-4"> Ingrédients </p>
+     <p class="mt-4 txt2"> Ingrédients </p>
 
     {% for ingredient in recipe.ingredients %}
     

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class IngredientTest extends WebTestCase
+
 {
     public function testIfCreateIngredientIsSuccessfull(): void
     {
@@ -58,12 +59,8 @@ class IngredientTest extends WebTestCase
 
     {
         $client = static::createClient();
-
-         //Recupère urlgenerator
         
          $urlGenerator = $client->getContainer()->get('router');
-        
-         // Recupére entity manager
          
          $entityManager = $client->getContainer()->get('doctrine.orm.entity_manager');
          
@@ -120,5 +117,39 @@ class IngredientTest extends WebTestCase
         $this->assertRouteSame('ingredient.index');
 
    
+    }
+
+    public function testIfDeleteIngredientIsSuccessful() : void
+
+    {
+        $client = static::createClient();
+
+        $urlGenerator = $client->getContainer()->get('router');
+        $entityManager = $client->getContainer()->get('doctrine.orm.entity_manager');
+
+        $user = $entityManager->find(User::class,1);
+        $ingredient = $entityManager->getRepository(Ingredient::class)->findOneBy([
+
+            'user' => $user
+        ]);
+
+        $client->loginUser($user);
+
+        $crawler = $client->request(
+            Request::METHOD_GET,
+            $urlGenerator->generate('ingredient.delete', ['id' =>$ingredient->getId()])
+
+        );
+
+        
+        $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
+
+        $client->followRedirect();       
+
+        $this->assertSelectorTextContains('div.alert-success', 'Votre ingrédient a été supprimé avec succès');
+
+        $this->assertRouteSame('ingredient.index');
+
+
     }
 }

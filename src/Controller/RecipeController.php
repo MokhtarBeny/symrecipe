@@ -68,8 +68,15 @@ class RecipeController extends AbstractController
         Request $request
         ) : Response
     {
+        $cache = new FileSystemAdapter();
+        $data =$cache->get('recipes', function(ItemInterface $item) use ($repository)
+        {
+            $item->expiresAfter(15);
+            return $repository->findPublicRecipe(null);
+        });
+
         $recipes = $paginator->paginate(
-            $repository->findPublicRecipe(null),
+            $data,
             $request->query->getInt('page', 1),
             10
         );
