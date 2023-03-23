@@ -19,7 +19,7 @@ Si il possède on rôle administrateur cela permet d'accès au panneau d'adminis
 
 ![Markdown Logo](https://www.zupimages.net/up/23/12/tm4l.png)
 
-Ici le controller "RecipeController" nous permet de gérer plusieurs routes et de créér/modifier/suprimmer une recette.
+Ici le controller "RecipeController" nous permet de gérer plusieurs routes et de créér/modifier/suprimer une recette.
 ainsi que d'afficher uniquement les recettes publics/privés.
 La premiere 
 
