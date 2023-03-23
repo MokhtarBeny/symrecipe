@@ -1,4 +1,4 @@
-# Bienvenue sur mon Projet Shoes ISLAND
+# Bienvenue sur mon Projet SymRecipe
 
 
 C'est un de gestion de recette que j'ai développé via le framework symfony qui se base sur un MVC (modèle/vue/ controller).
