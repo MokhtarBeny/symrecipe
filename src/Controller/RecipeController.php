@@ -104,7 +104,7 @@ class RecipeController extends AbstractController
        
         
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {   //si le formulaire est envoyé et validé
             $recipe = $form->getData();
             $recipe->setUser($this->getUser());
 
@@ -154,17 +154,14 @@ class RecipeController extends AbstractController
             if(!$existingMark){
                 $manager->persist($mark);
             }else{
-
                 $existingMark = $form->getData();
             }
 
             $manager->flush();
 
             $this->addFlash(
-
                 'success',
                 'Votre note a bien été prise en compte.'
-
             );
 
             return $this->redirectToRoute('recipe.show', ['id' => $recipe->getId()]);
