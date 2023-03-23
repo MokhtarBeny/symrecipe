@@ -1,10 +1,10 @@
 # Bienvenue sur mon Projet SymRecipe
 
 
-C'est un de gestion de recette que j'ai développé via le framework symfony qui se base sur un MVC (modèle/vue/ controller).
+C'est un site de gestion de recette que j'ai développé via le framework symfony qui se base sur un MVC (modèle/vue/ controller).
 Il permet aux utilisateurs de créer un compte avec des recettes/ ingrédients.
 J'ai intégrer des formulaires pour chaque CRUD ce qui permet a l'utilisateur d'alimenter son compte en recette et ingrédient et une gestion public / privé de toutes ses recettes.
-J'ai intégré également l'api EasyAdmin qui permet à un ou plusieurs administrateurs de gérer diférrents CRUD lié aux différentes entités de la base de données.
+J'ai intégré également l'API EasyAdmin qui permet à un ou plusieurs administrateurs de gérer diférrents CRUD lié aux différentes entités de la base de données.
 
 ## Vue de l'accueil: 
 
