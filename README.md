@@ -34,7 +34,7 @@ qui permet la création d'une nouvelle recette via la formulaire ci-dessous :
 ![Markdown Logo](https://www.zupimages.net/up/23/12/y0uc.png)
 
 
-# TEST UNIQUE ET FONCTIONNEL
+# TEST UNITAIRE ET FONCTIONNEL
 
 
 J'ai effectué une serie de test unitaire & fonctionnel afin de me familiariser avec différentes scénario possibles et vérifier que le plupart des fonctionnalités ne comportaient pas de bug.
